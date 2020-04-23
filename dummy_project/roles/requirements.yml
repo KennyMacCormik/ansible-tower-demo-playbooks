@@ -1,0 +1,6 @@
+---
+roles:
+  - src: ericsysmin.chrony
+    version: master
+# -src: https://github.com/ericsysmin/ansible-role-chrony
+...

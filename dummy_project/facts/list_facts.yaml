@@ -1,0 +1,8 @@
+---
+- hosts: all
+  gather_facts: "{{ facts }}"
+  tasks:
+    - name: List all variables
+      debug:
+        var: vars
+...

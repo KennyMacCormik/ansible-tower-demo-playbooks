@@ -1,0 +1,10 @@
+---
+- hosts: all
+  gather_facts: "{{ facts }}"
+  tasks:
+    - name: Check ansible user
+      user:
+        name: ansible
+        state: present
+        groups: wheel
+...

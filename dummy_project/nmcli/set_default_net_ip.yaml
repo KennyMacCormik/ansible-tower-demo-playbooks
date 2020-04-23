@@ -1,0 +1,16 @@
+---
+- hosts: all
+  gather_facts: false
+  vars:
+    ethernet: "{{ eth }}"
+    connection: "{{ con }}"
+    ipaddress: "{{ ip }}"
+    enable_autoconnect: "{{ autoconnect }}"
+    dns_servers: "{{ dns }}"
+    dns_servers_serch: "{{ dns_serach }}"
+  tasks:
+    - name: Set ipv6 to ignore
+      shell: "nmcli connection modify {{ connection }} autoconnect {{ enable_autoconnect }} ipv6.method ignore ipv4.method manual ipv4.addresses {{ ipaddress }} ipv4.dns {{ dns_servers }} ipv4.dns-search {{ dns_servers_serch }}"
+    - name: Activate connection
+      shell: "nmcli con up {{ connection }}"
+...

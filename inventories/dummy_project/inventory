@@ -1,0 +1,9 @@
+dummy1.test.local
+dummy2.test.local
+dummy3.test.local
+dummy6.test.local
+
+[dummy_group1]
+dummy1.test.local
+dummy2.test.local
+

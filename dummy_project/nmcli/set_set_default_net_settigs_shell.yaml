@@ -1,0 +1,9 @@
+---
+- hosts: all
+  gather_facts: "{{ facts }}"
+  tasks:
+    - name: "Set DNS for {{ con }}"
+      shell: nmcli con mod "{{ con }}" ipv4.dns "{{ dns }}" ipv4.dns-search "{{ dns_search }}"
+    - name: "Activate {{ con }}"
+      shell: nmcli con up "{{ con }}"
+...

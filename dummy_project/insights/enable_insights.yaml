@@ -1,0 +1,11 @@
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+    - name: Install insights client
+      yum:
+        name: insights-client
+        state: latest
+    - name: Register insights
+      shell: insights-client --register
+...

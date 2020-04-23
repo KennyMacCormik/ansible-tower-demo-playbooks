@@ -1,0 +1,13 @@
+[windows]
+ca1.test.local
+
+[windows:vars]
+#ansible_user = Administrator
+ansible_user = Administrator@TEST.LOCAL
+ansible_password = P@$$w0rd
+ansible_connection = winrm
+ansible_winrm_transport = kerberos
+#ansible_winrm_server_cert_validation = ignore
+ansible_winrm_ca_trust_path = ./ca.pem
+#ansible_port = 5985
+#ansible_winrm_scheme = http

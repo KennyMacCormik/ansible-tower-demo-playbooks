@@ -1,0 +1,19 @@
+---
+- hosts: all
+  gather_facts: "{{ facts }}"
+  tasks:
+    - name: Disable remote root login
+      lineinfile:
+        dest: "{{ sshd_config }}"
+        regexp: "^#?PermitRootLogin"
+        line: "PermitRootLogin no"
+    - name: Disable empty password login
+      lineinfile:
+        dest: "{{ sshd_config }}"
+        regexp: "^#?PermitEmptyPasswords"
+        line: "PermitEmptyPasswords no"
+    - name: Restart sshd
+      service:
+        name: sshd
+        state: restarted
+...

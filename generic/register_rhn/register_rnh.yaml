@@ -1,0 +1,11 @@
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+    - name: Register to RHN
+      redhat_subscription:
+        state: present
+        username: alivanov_redhat
+        password: Meph1stop||ele$
+        auto_attach: true
+...
