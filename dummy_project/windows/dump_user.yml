@@ -1,0 +1,21 @@
+---
+- hosts: all
+  gather_facts: "{{ facts }}"
+  tasks:
+    - name: Add username to file
+      win_shell: |
+        $path = "{{ path }}";
+        $name = "{{ name }}";
+        $result = Join-Path $path $name;
+        Add-Content -Path $result -Value "$([datetime]::Now)    $(whoami)";
+    - name: Read File
+      win_shell: |
+        $path = "{{ path }}";
+        $name = "{{ name }}";
+        $result = Join-Path $path $name;
+        Get-Content -Path $result
+      register: file
+    - name: Looking file content
+      debug:
+        msg: "{{ file }}"
+...

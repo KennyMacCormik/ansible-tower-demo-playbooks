@@ -1,0 +1,19 @@
+---
+- hosts: all
+  gather_facts: "{{ facts }}"
+  tasks:
+    - name: Call local script
+      win_shell: C:\automation\dump-params.ps1 "{{ file_name }}" "{{ value1 }}" "{{ value2 }}"
+      args:
+        chdir: "{{ path }}"
+    - name: Read File
+      win_shell: |
+        $path = "{{ path }}";
+        $name = "{{ file_name }}";
+        $result = Join-Path $path $name;
+        Get-Content -Path $result
+      register: file
+    - name: Looking file content
+      debug:
+        msg: "{{ file }}"
+...
