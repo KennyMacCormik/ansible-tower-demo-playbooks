@@ -7,7 +7,7 @@
         block: |
           frontend postgres-front
               bind *:5432
-              default_backend postgres-back:wq
+              default_backend postgres-back
               option tcplog
           backend postgres-back
               balance source
