@@ -1,0 +1,21 @@
+---
+- hosts: all
+  tasks:
+    - name: Add HAproxy config block
+      blockinfile:
+        path: /etc/haproxy/haproxy.cfg
+        block: |
+          frontend postgres-front
+              bind *:5432
+              default_backend postgres-back:wq
+              option tcplog
+          backend postgres-back
+              balance source
+              server w1-https-router0 "{{server_ip_1}}":5432 check
+              server w2-https-router1 "{{server_ip_2}}":5432 check
+        marker: "#<!-- {mark} ANSIBLE MANAGED BLOCK -->"
+
+    - name: Restart HAproxy service
+      service:
+        name: haproxy
+        state: restarted
